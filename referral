@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ComfortGuard HVAC Membership</title>
+  <meta
+    name="description"
+    content="ComfortGuard HVAC Membership - preventative maintenance plan with bi-annual tune-ups, priority scheduling, repair discounts, and stackable referral rewards."
+  />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #131c31;
+      --panel-2: #1a2745;
+      --text: #eaf1ff;
+      --muted: #a9b6d3;
+      --primary: #4da3ff;
+      --primary-2: #7cc4ff;
+      --accent: #67e8b5;
+      --warning: #ffd166;
+      --danger: #ff7a7a;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --radius: 18px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(77,163,255,0.16), transparent 30%),
+        linear-gradient(180deg, #08101c 0%, #0b1220 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(11,18,32,0.74);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #04111f;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #06111d;
+      box-shadow: 0 10px 25px rgba(77,163,255,0.28);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      border-color: var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      background: rgba(103,232,181,0.08);
+      border: 1px solid rgba(103,232,181,0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.1; }
+    h1 { font-size: clamp(2.3rem, 4vw, 4.6rem); }
+    h2 { font-size: clamp(1.7rem, 2.3vw, 2.5rem); }
+    h3 { font-size: 1.2rem; }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat, .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-card {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -30% auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(77,163,255,0.35), transparent 65%);
+      pointer-events: none;
+    }
+
+    .price-switch {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0 22px;
+      flex-wrap: wrap;
+    }
+
+    .toggle {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .toggle.active {
+      background: rgba(77,163,255,0.14);
+      color: var(--text);
+      border-color: rgba(77,163,255,0.35);
+    }
+
+    .price-value {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin: 6px 0;
+    }
+
+    .price-note {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .mini-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .mini-list li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 66ch;
+      margin: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      color: var(--primary-2);
+      background: rgba(77,163,255,0.08);
+      border: 1px solid rgba(77,163,255,0.18);
+      margin-bottom: 12px;
+    }
+
+    .pricing-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(103,232,181,0.35);
+      box-shadow: 0 14px 40px rgba(103,232,181,0.08);
+    }
+
+    .badge {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      background: rgba(103,232,181,0.14);
+      border: 1px solid rgba(103,232,181,0.28);
+      color: var(--accent);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .pricing-amount {
+      font-size: 2.25rem;
+      font-weight: 900;
+      margin: 6px 0;
+    }
+
+    .pricing-sub {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .checklist {
+      columns: 2;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      color: var(--text);
+    }
+
+    .checklist li span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .field input[type="range"] {
+      width: 100%;
+    }
+
+    .field input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #0d1527;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .calc-output {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .metric .label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .metric .value {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .value.good { color: var(--accent); }
+    .value.warn { color: var(--warning); }
+    .value.bad { color: var(--danger); }
+
+    .bar-wrap {
+      width: 100%;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 12px;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      transition: width 0.25s ease;
+    }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      padding: 16px 18px;
+    }
+
+    details + details {
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      color: var(--muted);
+      margin: 12px 0 0;
+    }
+
+    .cta {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer {
+      padding: 36px 0 52px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-box {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .calculator-grid,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .checklist {
+        columns: 1;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .calc-output {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-badge">CG</span>
+        <span>ComfortGuard HVAC Membership</span>
+      </a>
+      <div class="nav-links">
+        <a href="#pricing">Pricing</a>
+        <a href="#checklist">Checklist</a>
+        <a href="#referrals">Referrals</a>
+        <a href="#profit">Profitability</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a class="btn btn-secondary" href="#join">Get Started</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Preventative maintenance + stackable referral rewards</div>
+        <h1>Protect home comfort. Reward loyal customers. Grow recurring revenue.</h1>
+        <p class="lead">
+          ComfortGuard is a simple residential HVAC maintenance membership with
+          two professional tune-ups per year, priority scheduling, repair savings,
+          and a referral system that lets customers save up to 50% at renewal.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">View Membership</a>
+          <a class="btn btn-secondary" href="#referrals">Try Referral Calculator</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>2 visits/year</strong>
+            <span>Spring AC tune-up + Fall heating tune-up</span>
+          </div>
+          <div class="stat">
+            <strong>Up to 50% off</strong>
+            <span>Stackable referral savings with a hard cap</span>
+          </div>
+          <div class="stat">
+            <strong>15% labor discount</strong>
+            <span>Plus no overtime or diagnostic fees on covered repairs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card hero-card">
+        <div class="tag">Membership Snapshot</div>
+        <h3>One plan. Clear value.</h3>
+
+        <div class="price-switch">
+          <button class="toggle active" id="toggleMonthly" type="button">Monthly</button>
+          <button class="toggle" id="toggleAnnual" type="button">Annual</button>
+        </div>
+
+        <div class="price-value" id="heroPrice">$19.99</div>
+        <div class="price-note" id="heroPriceNote">per month on auto-pay</div>
+
+        <ul class="mini-list">
+          <li>Two 20-point preventative maintenance visits every year</li>
+          <li>Priority scheduling when service demand is high</li>
+          <li>Minor refrigerant top-offs included when needed</li>
+          <li>Written service report with photos and recommendations</li>
+          <li>Referral rewards tracked for renewal savings</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Simple, transparent pricing</h2>
+            <p>
+              Designed to be customer-friendly while keeping the contractor protected with
+              realistic pricing and a discount cap.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card pricing-card featured">
+            <div class="badge">Most Flexible</div>
+            <div class="tag">Auto-pay Plan</div>
+            <h3>Monthly Membership</h3>
+            <div class="pricing-amount">$19.99</div>
+            <div class="pricing-sub">$239.88 annualized</div>
+            <ul class="mini-list">
+              <li>2 preventative maintenance visits per year</li>
+              <li>Priority scheduling</li>
+              <li>15% off repair labor</li>
+              <li>No overtime or diagnostic fees on covered repairs</li>
+              <li>Referral discounts applied to next billing cycle when eligible</li>
+            </ul>
+          </div>
+
+          <div class="card pricing-card">
+            <div class="tag">Best Cash Flow</div>
+            <h3>Annual Prepaid</h3>
+            <div class="pricing-amount">$229</div>
+            <div class="pricing-sub">save about $11 vs. monthly</div>
+            <ul class="mini-list">
+              <li>Full year of scheduled seasonal maintenance</li>
+              <li>Ideal for homeowners who want one simple annual payment</li>
+              <li>Referral discounts apply at renewal</li>
+              <li>Great option for loyalty and retention campaigns</li>
+              <li>Clear value with no surprise tune-up charges</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perks">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Why homeowners say yes</h2>
+            <p>
+              The value isn’t just maintenance. The plan combines convenience, peace of mind,
+              preferred service access, and real savings when repairs happen.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="tag">Peace of Mind</div>
+            <h3>Seasonal tune-ups</h3>
+            <p>Keep systems running efficiently with professional spring and fall service visits.</p>
+          </div>
+          <div class="card">
+            <div class="tag">Speed</div>
+            <h3>Priority scheduling</h3>
+            <p>Members move to the front of the line when same-day or next-day openings exist.</p>
+          </div>
+          <div class="card">
+            <div class="tag">Savings</div>
+            <h3>Repair discounts</h3>
+            <p>Enjoy 15% off repair labor plus no overtime or diagnostic fees on covered repairs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Full 20-point preventative maintenance checklist</h2>
+            <p>
+              This checklist is performed during each maintenance visit and gives the customer
+              a tangible sense of value and professionalism.
+            </p>
+          </div>
+        </div>
+
+        <ul class="checklist">
+          <li>Inspect and calibrate thermostat settings<span>Confirm the system is reading and responding correctly.</span></li>
+          <li>Tighten electrical connections and measure voltage/current<span>Reduce risk of failure and spot unsafe conditions early.</span></li>
+          <li>Lubricate moving parts<span>Help motors and bearings run smoothly and reduce wear.</span></li>
+          <li>Clean evaporator and condenser coils<span>Improve heat transfer and overall efficiency.</span></li>
+          <li>Check refrigerant levels and inspect for leaks<span>Minor top-offs included when needed.</span></li>
+          <li>Clean and adjust blower assembly/components<span>Support proper airflow and reduce strain.</span></li>
+          <li>Inspect and test ignition system and safety controls<span>Critical for reliable heating operation.</span></li>
+          <li>Check heat exchanger or air handler<span>Identify cracks, wear, and safety concerns.</span></li>
+          <li>Inspect ductwork for leaks or damage<span>Catch airflow losses and comfort problems.</span></li>
+          <li>Test starting capabilities and capacitors<span>Prevent no-start issues during peak season.</span></li>
+          <li>Measure temperature differentials and airflow<span>Verify performance and comfort delivery.</span></li>
+          <li>Inspect condensate drains and clean as needed<span>Reduce overflow and moisture issues.</span></li>
+          <li>Replace standard air filter<span>Or offer upgraded filtration options.</span></li>
+          <li>Check for carbon monoxide and gas leaks<span>Especially important during heating season.</span></li>
+          <li>Evaluate overall system efficiency<span>Recommend practical performance improvements.</span></li>
+          <li>Provide a written report with photos<span>Build trust with documented findings.</span></li>
+          <li>Inspect accessible insulation and cabinet condition<span>Spot wear affecting performance.</span></li>
+          <li>Check disconnects and service access condition<span>Help identify electrical safety concerns.</span></li>
+          <li>Listen for unusual vibration or noise<span>Catch developing mechanical issues earlier.</span></li>
+          <li>Document minor issues before they become costly<span>Supports repair upsells without pressure.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="referrals">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Refer &amp; Save calculator</h2>
+            <p>
+              Existing members earn 10% off their next annual bill for each successful referral,
+              stacked up to a maximum of 50% off. New customer must sign up for a 12-month plan,
+              complete the first visit, and remain active for 30 days to qualify.
+            </p>
+          </div>
+        </div>
+
+        <div class="calculator-grid">
+          <div class="card">
+            <div class="tag">Customer Savings</div>
+            <h3>Referral discount calculator</h3>
+
+            <div class="field">
+              <label for="referralsRange">Number of successful referrals: <span id="referralCountLabel">0</span></label>
+              <input id="referralsRange" type="range" min="0" max="10" step="1" value="0" />
+            </div>
+
+            <div class="field">
+              <label for="annualPrice">Annual membership price ($)</label>
+              <input id="annualPrice" type="number" min="0" step="0.01" value="229" />
+            </div>
+
+            <div class="calc-output">
+              <div class="metric">
+                <span class="label">Discount Rate</span>
+                <span class="value" id="discountRate">0%</span>
+              </div>
+              <div class="metric">
+                <span class="label">Renewal Price</span>
+                <span class="value" id="renewalPrice">$229.00</span>
+              </div>
+              <div class="metric">
+                <span class="label">Customer Saves</span>
+                <span class="value good" id="customerSavings">$0.00</span>
+              </div>
+              <div class="metric">
+                <span class="label">Cap Status</span>
+                <span class="value" id="capStatus">Below cap</span>
+              </div>
+            </div>
+
+            <div class="bar-wrap" aria-hidden="true">
+              <div class="bar" id="discountBar"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="tag">Examples</div>
+            <h3>How stacking works</h3>
+            <ul class="mini-list" id="exampleList">
+              <li>0 referrals → $229.00</li>
+              <li>1 referral → $206.10</li>
+              <li>2 referrals → $183.20</li>
+              <li>3 referrals → $160.30</li>
+              <li>4 referrals → $137.40</li>
+              <li>5+ referrals → $114.50</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profit">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Profitability check for the contractor</h2>
+            <p>
+              The model stays healthy because most customers refer 0–2 people, repair work is
+              high margin, and even a max-discount member can still generate strong lifetime value
+              through loyalty, service calls, and future replacement opportunities.
+            </p>
+          </div>
+        </div>
+
+        <div class="calculator-grid">
+          <div class="card">
+            <div class="tag">Business Calculator</div>
+            <h3>Plan margin calculator</h3>
+
+            <div class="field">
+              <label for="deliveryCost">Estimated annual delivery cost per customer ($)</label>
+              <input id="deliveryCost" type="number" min="0" step="0.01" value="115" />
+            </div>
+
+            <div class="field">
+              <label for="planRevenue">Membership revenue before discount ($)</label>
+              <input id="planRevenue" type="number" min="0" step="0.01" value="229" />
+            </div>
+
+            <div class="field">
+              <label for="profitReferrals">Referrals earned by this customer: <span id="profitReferralsLabel">0</span></label>
+              <input id="profitReferrals" type="range" min="0" max="10" step="1" value="0" />
+            </div>
+
+            <div class="calc-output">
+              <div class="metric">
+                <span class="label">Discounted Revenue</span>
+                <span class="value" id="discountedRevenue">$229.00</span>
+              </div>
+              <div class="metric">
+                <span class="label">Gross Profit</span>
+                <span class="value good" id="grossProfit">$114.00</span>
+              </div>
+              <div class="metric">
+                <span class="label">Gross Margin</span>
+                <span class="value good" id="grossMargin">49.8%</span>
+              </div>
+              <div class="metric">
+                <span class="label">Interpretation</span>
+                <span class="value" id="marginStatus">Strong positive margin</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="tag">Why It Works</div>
+            <h3>Beyond the maintenance bill</h3>
+            <ul class="mini-list">
+              <li>Most customers stay in the 0–2 referral range, preserving strong margin.</li>
+              <li>Each referral brings in a new member at full starting price.</li>
+              <li>Maintenance members convert to repairs and upgrades more often.</li>
+              <li>Priority service and labor discounts increase retention and trust.</li>
+              <li>Referred customers are usually cheaper to acquire than paid ads.</li>
+              <li>Lifetime value often matters more than the margin on one renewal bill.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Terms and FAQs</h2>
+            <p>
+              Clear terms protect the contractor and keep the offer easy for customers to understand.
+            </p>
+          </div>
+        </div>
+
+        <details open>
+          <summary>When does the referral discount apply?</summary>
+          <p>
+            The discount applies at renewal or the next billing cycle after the referral requirements
+            are met: the referred customer signs up for a 12-month plan, completes the first visit,
+            and remains active for 30 days.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is there a limit to how much a customer can save?</summary>
+          <p>
+            Yes. Referral rewards stack at 10% per successful referral, capped at 50% off the bill.
+            This keeps the plan generous for customers while protecting profitability.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens if a membership lapses?</summary>
+          <p>
+            Discounts are non-transferable and expire if the membership lapses or is canceled. Auto-renew
+            terms and cancellation windows should be stated clearly in the final membership agreement.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can pricing change over time?</summary>
+          <p>
+            Yes. The contractor may reserve the right to adjust pricing annually with advance notice,
+            such as 60 days before renewal.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="container">
+        <div class="card cta">
+          <div>
+            <div class="tag">Launch-Ready Concept</div>
+            <h2>Roll this out as a real offer</h2>
+            <p>
+              Pair this page with a one-page agreement PDF, a CRM-generated referral code,
+              and an email/SMS campaign to existing customers. It is simple, marketable,
+              and easy to explain in the field.
+            </p>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start;">
+            <a class="btn btn-primary" href="mailto:info@example.com?subject=ComfortGuard%20Membership%20Inquiry">Request Membership</a>
+            <a class="btn btn-secondary" href="#top">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-box">
+      <div>© <span id="year"></span> ComfortGuard HVAC Membership</div>
+      <div>Built as a demo landing page for a residential HVAC preventative maintenance plan.</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggleMonthly = document.getElementById("toggleMonthly");
+    const toggleAnnual = document.getElementById("toggleAnnual");
+    const heroPrice = document.getElementById("heroPrice");
+    const heroPriceNote = document.getElementById("heroPriceNote");
+
+    function setHeroPricing(mode) {
+      const monthlyActive = mode === "monthly";
+      toggleMonthly.classList.toggle("active", monthlyActive);
+      toggleAnnual.classList.toggle("active", !monthlyActive);
+
+      if (monthlyActive) {
+        heroPrice.textContent = "$19.99";
+        heroPriceNote.textContent = "per month on auto-pay";
+      } else {
+        heroPrice.textContent = "$229";
+        heroPriceNote.textContent = "per year when prepaid";
+      }
+    }
+
+    toggleMonthly.addEventListener("click", () => setHeroPricing("monthly"));
+    toggleAnnual.addEventListener("click", () => setHeroPricing("annual"));
+
+    const referralsRange = document.getElementById("referralsRange");
+    const annualPriceInput = document.getElementById("annualPrice");
+    const referralCountLabel = document.getElementById("referralCountLabel");
+    const discountRate = document.getElementById("discountRate");
+    const renewalPrice = document.getElementById("renewalPrice");
+    const customerSavings = document.getElementById("customerSavings");
+    const capStatus = document.getElementById("capStatus");
+    const discountBar = document.getElementById("discountBar");
+    const exampleList = document.getElementById("exampleList");
+
+    function money(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(value);
+    }
+
+    function getDiscountPercent(referrals) {
+      return Math.min(referrals * 10, 50);
+    }
+
+    function renderExamples(basePrice) {
+      const rows = [0, 1, 2, 3, 4, 5];
+      exampleList.innerHTML = rows.map((count) => {
+        const pct = getDiscountPercent(count);
+        const price = basePrice * (1 - pct / 100);
+        return `<li>${count === 5 ? "5+ referrals" : `${count} ${count === 1 ? "referral" : "referrals"}`} → ${money(price)}</li>`;
+      }).join("");
+    }
+
+    function updateReferralCalculator() {
+      const referrals = Number(referralsRange.value);
+      const annualPrice = Number(annualPriceInput.value) || 0;
+      const pct = getDiscountPercent(referrals);
+      const savings = annualPrice * (pct / 100);
+      const discounted = annualPrice - savings;
+
+      referralCountLabel.textContent = referrals;
+      discountRate.textContent = pct + "%";
+      renewalPrice.textContent = money(discounted);
+      customerSavings.textContent = money(savings);
+      capStatus.textContent = pct >= 50 ? "Max discount cap reached" : "Below cap";
+      discountBar.style.width = pct + "%";
+
+      renderExamples(annualPrice);
+    }
+
+    referralsRange.addEventListener("input", updateReferralCalculator);
+    annualPriceInput.addEventListener("input", updateReferralCalculator);
+
+    const deliveryCost = document.getElementById("deliveryCost");
+    const planRevenue = document.getElementById("planRevenue");
+    const profitReferrals = document.getElementById("profitReferrals");
+    const profitReferralsLabel = document.getElementById("profitReferralsLabel");
+    const discountedRevenue = document.getElementById("discountedRevenue");
+    const grossProfit = document.getElementById("grossProfit");
+    const grossMargin = document.getElementById("grossMargin");
+    const marginStatus = document.getElementById("marginStatus");
+
+    function setMetricClass(el, numericValue) {
+      el.classList.remove("good", "warn", "bad");
+      if (numericValue > 20) el.classList.add("good");
+      else if (numericValue >= 0) el.classList.add("warn");
+      else el.classList.add("bad");
+    }
+
+    function updateProfitCalculator() {
+      const referrals = Number(profitReferrals.value);
+      const cost = Number(deliveryCost.value) || 0;
+      const revenue = Number(planRevenue.value) || 0;
+      const pct = getDiscountPercent(referrals);
+      const netRevenue = revenue * (1 - pct / 100);
+      const profit = netRevenue - cost;
+      const margin = netRevenue > 0 ? (profit / netRevenue) * 100 : 0;
+
+      profitReferralsLabel.textContent = referrals;
+      discountedRevenue.textContent = money(netRevenue);
+      grossProfit.textContent = money(profit);
+      grossMargin.textContent = margin.toFixed(1) + "%";
+
+      setMetricClass(grossProfit, profit);
+      setMetricClass(grossMargin, margin);
+
+      let status = "Strong positive margin";
+      if (profit < 0) status = "Negative on this bill";
+      else if (profit < 10) status = "Near break-even";
+      else if (margin < 25) status = "Moderate but acceptable";
+      marginStatus.textContent = status;
+    }
+
+    profitReferrals.addEventListener("input", updateProfitCalculator);
+    deliveryCost.addEventListener("input", updateProfitCalculator);
+    planRevenue.addEventListener("input", updateProfitCalculator);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    setHeroPricing("monthly");
+    updateReferralCalculator();
+    updateProfitCalculator();
+  </script>
+</body>
+</html>
